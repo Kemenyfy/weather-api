@@ -18,8 +18,10 @@ class WeatherSearch {
         console.log(list.name)
         console.log(list.main.temp)
         document.querySelector('.currentWeather').style.listStyle = "none"
-        let object = new AddNameToDom(list.name)
-        object.render()
+        let name = new AddNameToDom(list.name)
+        name.render()
+        let currentTemp = new AddCurrentTempToDom(list.main.temp)
+        currentTemp.render()
       })
   }
 }
@@ -32,13 +34,19 @@ class AddNameToDom {
     let newLi = document.createElement('li')
     newLi.textContent = this.item
     document.querySelector('.currentWeather').appendChild(newLi);
-
   }
 }
-// TODO: make into own class
-// let newLi = document.createElement('li')
-// newLi.textContent = list.main.temp
-// document.querySelector('.currentWeather').appendChild(newLi);
+
+class AddCurrentTempToDom {
+  constructor(variableToAdd) {
+    this.item = variableToAdd
+  }
+  render () {
+    let newLi = document.createElement('li')
+    newLi.textContent = this.item
+    document.querySelector('.currentWeather').appendChild(newLi);
+  }
+}
 
 const search = (event) => {
   event.preventDefault()
